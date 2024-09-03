@@ -5,7 +5,7 @@ const socket = io('/');
 // which we can pass in different places. And use with this peer library, we can connect other users on the network
 const myPeer = new Peer(undefined,{
   host:'/',
-  port: '3001'
+  port: '9001'
 })
 
 const videoGrid = document.getElementById('video-grid');
@@ -24,8 +24,10 @@ navigator.mediaDevices.getUserMedia({
     console.log('on call')
     call.answer(stream)
   })
+
   // listen to the user-connected event
   socket.on('user-connected',(userId) => {
+    console.log(myPeer,'myPeer')
     connectToNewUser(userId, stream)
   })
 })
